@@ -13,7 +13,7 @@
 
 import argparse
 import enum
-import ocd10
+import ocd_bootstrap
 import sys
 import types
 from kaitaistruct import KaitaiStream
@@ -62,9 +62,9 @@ def dump_struct(struct, name='', indent=''):
             print (f'{indent}{full_member_name}: bytes [' + ', '.join([f'0x{x:02X}' for x in member]) + ']')
         elif isinstance(member, str):
             print(f'{indent}{full_member_name}: ' + repr(member.rstrip('\0')))
-        elif isinstance(member, ocd10.Ocd10.PascalString):
+        elif isinstance(member, parser_class.PascalString):
             print(f'{indent}{full_member_name}: {repr(member.value)}')
-        elif isinstance(member, list) and isinstance(member[0], ocd10.Ocd10.TDPoly):
+        elif isinstance(member, list) and isinstance(member[0], parser_class.TDPoly):
             # special handling for coords so that it does not take too much screen space
             coords_strings = []
             for element in member:
@@ -123,7 +123,20 @@ print_empty = args.print_empty
 # file processing
 binary_file = open(args.file, mode='rb')
 stream = KaitaiStream(binary_file)
-testfile = ocd10.Ocd10(_io = stream)
+
+# auto-detect the version
+header_sample = ocd_bootstrap.OcdBootstrap(_io = stream)
+parser_class = None
+if header_sample.version == 10:
+    import ocd10
+    parser_class = ocd10.Ocd10
+else:
+    print(f'No parser found for version {header_sample.version}. Bailing out.')
+    exit(1)
+
+stream.seek(0)
+print(f'NOTE: Using {parser_class.__name__} parser.')
+testfile = parser_class(_io = stream)
 
 # dive into the start point
 root_name = []
