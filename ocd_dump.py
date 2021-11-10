@@ -70,6 +70,9 @@ def dump_struct(struct, name='', indent=''):
             for element in member:
                 coords_strings.append(f'[{element.x_coord},{element.y_coord},{element.flags}]')
             print(f'{indent}{full_member_name}: {", ".join(coords_strings)}')
+        elif isinstance(member, parser_class.TDPoly):
+            coords_string = f'[{member.x_coord},{member.y_coord},{member.flags}]'
+            print(f'{indent}{full_member_name}: {coords_string}')
         elif isinstance(member, enum.Enum):
             print(f'{indent}{full_member_name}: {member.name}({member.value})')
         elif isinstance(member, list):
@@ -130,6 +133,9 @@ parser_class = None
 if header_sample.version == 10:
     import ocd10
     parser_class = ocd10.Ocd10
+elif header_sample.version == 2018:
+    import ocd2018
+    parser_class = ocd2018.Ocd2018
 else:
     print(f'No parser found for version {header_sample.version}. Bailing out.')
     exit(1)

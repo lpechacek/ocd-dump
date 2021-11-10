@@ -1,0 +1,563 @@
+digraph {
+	rankdir=LR;
+	node [shape=plaintext];
+	subgraph cluster__ocd2018 {
+		label="Ocd2018";
+		graph[style=dotted];
+
+		ocd2018__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+			<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+			<TR><TD PORT="file_header_pos">0</TD><TD PORT="file_header_size">60</TD><TD>OcdFileHeader</TD><TD PORT="file_header_type">file_header</TD></TR>
+		</TABLE>>];
+		ocd2018__inst__file_name [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+			<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+			<TR><TD PORT="file_name_pos">file_header.file_name_pos</TD><TD PORT="file_name_size">file_header.file_name_size</TD><TD>str(ISO8859-1)</TD><TD PORT="file_name_type">file_name</TD></TR>
+		</TABLE>>];
+		ocd2018__inst__symbol_index [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+			<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+			<TR><TD PORT="symbol_index_pos">file_header.first_symbol_index_block</TD><TD PORT="symbol_index_size">1028</TD><TD>TSymbolIndexBlock</TD><TD PORT="symbol_index_type">symbol_index</TD></TR>
+		</TABLE>>];
+		ocd2018__inst__string_index [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+			<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+			<TR><TD PORT="string_index_pos">file_header.first_string_index_block</TD><TD PORT="string_index_size">4100</TD><TD>TStringIndexBlock</TD><TD PORT="string_index_type">string_index</TD></TR>
+		</TABLE>>];
+		ocd2018__inst__object_index [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+			<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+			<TR><TD PORT="object_index_pos">file_header.first_object_index_block</TD><TD PORT="object_index_size">10244</TD><TD>TObjectIndexBlock</TD><TD PORT="object_index_type">object_index</TD></TR>
+		</TABLE>>];
+		subgraph cluster__t_text_symbol {
+			label="Ocd2018::TTextSymbol";
+			graph[style=dotted];
+
+			t_text_symbol__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="font_name_pos">0</TD><TD PORT="font_name_size">32</TD><TD>PascalString</TD><TD PORT="font_name_type">font_name</TD></TR>
+				<TR><TD PORT="font_color_pos">32</TD><TD PORT="font_color_size">2</TD><TD>u2le</TD><TD PORT="font_color_type">font_color</TD></TR>
+				<TR><TD PORT="font_size_pos">34</TD><TD PORT="font_size_size">2</TD><TD>u2le</TD><TD PORT="font_size_type">font_size</TD></TR>
+				<TR><TD PORT="weight_pos">36</TD><TD PORT="weight_size">2</TD><TD>u2le</TD><TD PORT="weight_type">weight</TD></TR>
+				<TR><TD PORT="italic_pos">38</TD><TD PORT="italic_size">1</TD><TD>u1</TD><TD PORT="italic_type">italic</TD></TR>
+				<TR><TD PORT="reserved1_pos">39</TD><TD PORT="reserved1_size">1</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="char_space_pos">40</TD><TD PORT="char_space_size">2</TD><TD>u2le</TD><TD PORT="char_space_type">char_space</TD></TR>
+				<TR><TD PORT="word_space_pos">42</TD><TD PORT="word_space_size">2</TD><TD>u2le</TD><TD PORT="word_space_type">word_space</TD></TR>
+				<TR><TD PORT="alignment_pos">44</TD><TD PORT="alignment_size">2</TD><TD>u2le</TD><TD PORT="alignment_type">alignment</TD></TR>
+				<TR><TD PORT="line_space_pos">46</TD><TD PORT="line_space_size">2</TD><TD>u2le</TD><TD PORT="line_space_type">line_space</TD></TR>
+				<TR><TD PORT="para_space_pos">48</TD><TD PORT="para_space_size">2</TD><TD>u2le</TD><TD PORT="para_space_type">para_space</TD></TR>
+				<TR><TD PORT="indent_first_pos">50</TD><TD PORT="indent_first_size">2</TD><TD>u2le</TD><TD PORT="indent_first_type">indent_first</TD></TR>
+				<TR><TD PORT="indent_other_pos">52</TD><TD PORT="indent_other_size">2</TD><TD>u2le</TD><TD PORT="indent_other_type">indent_other</TD></TR>
+				<TR><TD PORT="n_tabs_pos">54</TD><TD PORT="n_tabs_size">2</TD><TD>u2le</TD><TD PORT="n_tabs_type">n_tabs</TD></TR>
+				<TR><TD PORT="tabs_pos">56</TD><TD PORT="tabs_size">4</TD><TD>u4le</TD><TD PORT="tabs_type">tabs</TD></TR>
+				<TR><TD COLSPAN="4" PORT="tabs__repeat">repeat 32 times</TD></TR>
+				<TR><TD PORT="lbon_pos">184</TD><TD PORT="lbon_size">2</TD><TD>u2le</TD><TD PORT="lbon_type">lbon</TD></TR>
+				<TR><TD PORT="lbcolor_pos">186</TD><TD PORT="lbcolor_size">2</TD><TD>u2le</TD><TD PORT="lbcolor_type">lbcolor</TD></TR>
+				<TR><TD PORT="lbwidth_pos">188</TD><TD PORT="lbwidth_size">2</TD><TD>u2le</TD><TD PORT="lbwidth_type">lbwidth</TD></TR>
+				<TR><TD PORT="lbdist_pos">190</TD><TD PORT="lbdist_size">2</TD><TD>u2le</TD><TD PORT="lbdist_type">lbdist</TD></TR>
+				<TR><TD PORT="reserved2_pos">192</TD><TD PORT="reserved2_size">2</TD><TD></TD><TD PORT="reserved2_type">reserved2</TD></TR>
+				<TR><TD PORT="fr_mode_pos">194</TD><TD PORT="fr_mode_size">1</TD><TD>u1</TD><TD PORT="fr_mode_type">fr_mode</TD></TR>
+				<TR><TD PORT="fr_line_style_pos">195</TD><TD PORT="fr_line_style_size">1</TD><TD>u1</TD><TD PORT="fr_line_style_type">fr_line_style</TD></TR>
+				<TR><TD PORT="point_sym_on_pos">196</TD><TD PORT="point_sym_on_size">1</TD><TD>u1</TD><TD PORT="point_sym_on_type">point_sym_on</TD></TR>
+				<TR><TD PORT="point_sym_number_pos">197</TD><TD PORT="point_sym_number_size">4</TD><TD>u4le</TD><TD PORT="point_sym_number_type">point_sym_number</TD></TR>
+				<TR><TD PORT="reserved3_pos">201</TD><TD PORT="reserved3_size">19</TD><TD></TD><TD PORT="reserved3_type">reserved3</TD></TR>
+				<TR><TD PORT="fr_left_pos">220</TD><TD PORT="fr_left_size">2</TD><TD>u2le</TD><TD PORT="fr_left_type">fr_left</TD></TR>
+				<TR><TD PORT="fr_bottom_pos">222</TD><TD PORT="fr_bottom_size">2</TD><TD>u2le</TD><TD PORT="fr_bottom_type">fr_bottom</TD></TR>
+				<TR><TD PORT="fr_right_pos">224</TD><TD PORT="fr_right_size">2</TD><TD>u2le</TD><TD PORT="fr_right_type">fr_right</TD></TR>
+				<TR><TD PORT="fr_top_pos">226</TD><TD PORT="fr_top_size">2</TD><TD>u2le</TD><TD PORT="fr_top_type">fr_top</TD></TR>
+				<TR><TD PORT="fr_color_pos">228</TD><TD PORT="fr_color_size">2</TD><TD>u2le</TD><TD PORT="fr_color_type">fr_color</TD></TR>
+				<TR><TD PORT="fr_width_pos">230</TD><TD PORT="fr_width_size">2</TD><TD>u2le</TD><TD PORT="fr_width_type">fr_width</TD></TR>
+				<TR><TD PORT="reserved4_pos">232</TD><TD PORT="reserved4_size">2</TD><TD></TD><TD PORT="reserved4_type">reserved4</TD></TR>
+				<TR><TD PORT="reserved5_pos">234</TD><TD PORT="reserved5_size">2</TD><TD></TD><TD PORT="reserved5_type">reserved5</TD></TR>
+				<TR><TD PORT="fr_of_x_pos">236</TD><TD PORT="fr_of_x_size">2</TD><TD>u2le</TD><TD PORT="fr_of_x_type">fr_of_x</TD></TR>
+				<TR><TD PORT="fr_of_y_pos">238</TD><TD PORT="fr_of_y_size">2</TD><TD>u2le</TD><TD PORT="fr_of_y_type">fr_of_y</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_symbol_base {
+			label="Ocd2018::TSymbolBase";
+			graph[style=dotted];
+
+			t_symbol_base__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="size_pos">0</TD><TD PORT="size_size">4</TD><TD>u4le</TD><TD PORT="size_type">size</TD></TR>
+				<TR><TD PORT="sym_num_pos">4</TD><TD PORT="sym_num_size">4</TD><TD>u4le</TD><TD PORT="sym_num_type">sym_num</TD></TR>
+				<TR><TD PORT="otp_pos">8</TD><TD PORT="otp_size">1</TD><TD>u1→EObjEtSymTypes</TD><TD PORT="otp_type">otp</TD></TR>
+				<TR><TD PORT="flags_pos">9</TD><TD PORT="flags_size">1</TD><TD>u1</TD><TD PORT="flags_type">flags</TD></TR>
+				<TR><TD PORT="selected_pos">10</TD><TD PORT="selected_size">1</TD><TD>u1</TD><TD PORT="selected_type">selected</TD></TR>
+				<TR><TD PORT="status_pos">11</TD><TD PORT="status_size">1</TD><TD>u1</TD><TD PORT="status_type">status</TD></TR>
+				<TR><TD PORT="drawing_tool_pos">12</TD><TD PORT="drawing_tool_size">1</TD><TD>u1</TD><TD PORT="drawing_tool_type">drawing_tool</TD></TR>
+				<TR><TD PORT="cs_mode_pos">13</TD><TD PORT="cs_mode_size">1</TD><TD>u1</TD><TD PORT="cs_mode_type">cs_mode</TD></TR>
+				<TR><TD PORT="cs_objtype_pos">14</TD><TD PORT="cs_objtype_size">1</TD><TD>u1</TD><TD PORT="cs_objtype_type">cs_objtype</TD></TR>
+				<TR><TD PORT="cs_cdflags_pos">15</TD><TD PORT="cs_cdflags_size">1</TD><TD>u1</TD><TD PORT="cs_cdflags_type">cs_cdflags</TD></TR>
+				<TR><TD PORT="extent_pos">16</TD><TD PORT="extent_size">4</TD><TD>u4le</TD><TD PORT="extent_type">extent</TD></TR>
+				<TR><TD PORT="file_pos_pos">20</TD><TD PORT="file_pos_size">4</TD><TD>u4le</TD><TD PORT="file_pos_type">file_pos</TD></TR>
+				<TR><TD PORT="reserved1_pos">24</TD><TD PORT="reserved1_size">2</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="n_colors_pos">26</TD><TD PORT="n_colors_size">2</TD><TD>u2le</TD><TD PORT="n_colors_type">n_colors</TD></TR>
+				<TR><TD PORT="colors_pos">28</TD><TD PORT="colors_size">2</TD><TD>u2le</TD><TD PORT="colors_type">colors</TD></TR>
+				<TR><TD COLSPAN="4" PORT="colors__repeat">repeat 14 times</TD></TR>
+				<TR><TD PORT="description_pos">56</TD><TD PORT="description_size">128</TD><TD>str(UTF-16LE)</TD><TD PORT="description_type">description</TD></TR>
+				<TR><TD PORT="icon_bits_pos">184</TD><TD PORT="icon_bits_size">484</TD><TD></TD><TD PORT="icon_bits_type">icon_bits</TD></TR>
+				<TR><TD PORT="symbol_tree_group_pos">668</TD><TD PORT="symbol_tree_group_size">2</TD><TD>u2le</TD><TD PORT="symbol_tree_group_type">symbol_tree_group</TD></TR>
+				<TR><TD COLSPAN="4" PORT="symbol_tree_group__repeat">repeat 64 times</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_sym_elt {
+			label="Ocd2018::TSymElt";
+			graph[style=dotted];
+
+			t_sym_elt__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="st_type_pos">0</TD><TD PORT="st_type_size">2</TD><TD>u2le→ESymbolElementType</TD><TD PORT="st_type_type">st_type</TD></TR>
+				<TR><TD PORT="st_flags_pos">2</TD><TD PORT="st_flags_size">2</TD><TD>u2le</TD><TD PORT="st_flags_type">st_flags</TD></TR>
+				<TR><TD PORT="st_color_pos">4</TD><TD PORT="st_color_size">2</TD><TD>u2le</TD><TD PORT="st_color_type">st_color</TD></TR>
+				<TR><TD PORT="st_line_width_pos">6</TD><TD PORT="st_line_width_size">2</TD><TD>u2le</TD><TD PORT="st_line_width_type">st_line_width</TD></TR>
+				<TR><TD PORT="st_diameter_pos">8</TD><TD PORT="st_diameter_size">2</TD><TD>u2le</TD><TD PORT="st_diameter_type">st_diameter</TD></TR>
+				<TR><TD PORT="st_n_poly_pos">10</TD><TD PORT="st_n_poly_size">2</TD><TD>u2le</TD><TD PORT="st_n_poly_type">st_n_poly</TD></TR>
+				<TR><TD PORT="reserved1_pos">12</TD><TD PORT="reserved1_size">4</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="st_poly_pos">16</TD><TD PORT="st_poly_size">(st_n_poly * 8)</TD><TD>TSymElementPoly</TD><TD PORT="st_poly_type">st_poly</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_line_text_symbol {
+			label="Ocd2018::TLineTextSymbol";
+			graph[style=dotted];
+
+			t_line_text_symbol__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="font_name_pos">0</TD><TD PORT="font_name_size">32</TD><TD>PascalString</TD><TD PORT="font_name_type">font_name</TD></TR>
+				<TR><TD PORT="font_color_pos">32</TD><TD PORT="font_color_size">2</TD><TD>u2le</TD><TD PORT="font_color_type">font_color</TD></TR>
+				<TR><TD PORT="font_size_pos">34</TD><TD PORT="font_size_size">2</TD><TD>u2le</TD><TD PORT="font_size_type">font_size</TD></TR>
+				<TR><TD PORT="weight_pos">36</TD><TD PORT="weight_size">2</TD><TD>u2le</TD><TD PORT="weight_type">weight</TD></TR>
+				<TR><TD PORT="italic_pos">38</TD><TD PORT="italic_size">1</TD><TD>u1</TD><TD PORT="italic_type">italic</TD></TR>
+				<TR><TD PORT="reserved1_pos">39</TD><TD PORT="reserved1_size">1</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="char_space_pos">40</TD><TD PORT="char_space_size">2</TD><TD>u2le</TD><TD PORT="char_space_type">char_space</TD></TR>
+				<TR><TD PORT="word_space_pos">42</TD><TD PORT="word_space_size">2</TD><TD>u2le</TD><TD PORT="word_space_type">word_space</TD></TR>
+				<TR><TD PORT="alignment_pos">44</TD><TD PORT="alignment_size">2</TD><TD>u2le</TD><TD PORT="alignment_type">alignment</TD></TR>
+				<TR><TD PORT="fr_mode_pos">46</TD><TD PORT="fr_mode_size">1</TD><TD>u1</TD><TD PORT="fr_mode_type">fr_mode</TD></TR>
+				<TR><TD PORT="fr_line_style_pos">47</TD><TD PORT="fr_line_style_size">1</TD><TD>u1</TD><TD PORT="fr_line_style_type">fr_line_style</TD></TR>
+				<TR><TD PORT="reserved2_pos">48</TD><TD PORT="reserved2_size">32</TD><TD></TD><TD PORT="reserved2_type">reserved2</TD></TR>
+				<TR><TD PORT="fr_color_pos">80</TD><TD PORT="fr_color_size">2</TD><TD>u2le</TD><TD PORT="fr_color_type">fr_color</TD></TR>
+				<TR><TD PORT="fr_width_pos">82</TD><TD PORT="fr_width_size">2</TD><TD>u2le</TD><TD PORT="fr_width_type">fr_width</TD></TR>
+				<TR><TD PORT="reserved3_pos">84</TD><TD PORT="reserved3_size">4</TD><TD></TD><TD PORT="reserved3_type">reserved3</TD></TR>
+				<TR><TD PORT="fr_of_x_pos">88</TD><TD PORT="fr_of_x_size">2</TD><TD>u2le</TD><TD PORT="fr_of_x_type">fr_of_x</TD></TR>
+				<TR><TD PORT="fr_of_y_pos">90</TD><TD PORT="fr_of_y_size">2</TD><TD>u2le</TD><TD PORT="fr_of_y_type">fr_of_y</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_area_symbol {
+			label="Ocd2018::TAreaSymbol";
+			graph[style=dotted];
+
+			t_area_symbol__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="border_sym_pos">0</TD><TD PORT="border_sym_size">4</TD><TD>u4le</TD><TD PORT="border_sym_type">border_sym</TD></TR>
+				<TR><TD PORT="fill_color_pos">4</TD><TD PORT="fill_color_size">2</TD><TD>u2le</TD><TD PORT="fill_color_type">fill_color</TD></TR>
+				<TR><TD PORT="hatch_mode_pos">6</TD><TD PORT="hatch_mode_size">2</TD><TD>u2le→EAreaHatchMode</TD><TD PORT="hatch_mode_type">hatch_mode</TD></TR>
+				<TR><TD PORT="hatch_color_pos">8</TD><TD PORT="hatch_color_size">2</TD><TD>u2le</TD><TD PORT="hatch_color_type">hatch_color</TD></TR>
+				<TR><TD PORT="hatch_line_width_pos">10</TD><TD PORT="hatch_line_width_size">2</TD><TD>u2le</TD><TD PORT="hatch_line_width_type">hatch_line_width</TD></TR>
+				<TR><TD PORT="hatch_dist_pos">12</TD><TD PORT="hatch_dist_size">2</TD><TD>u2le</TD><TD PORT="hatch_dist_type">hatch_dist</TD></TR>
+				<TR><TD PORT="hatch_angle1_pos">14</TD><TD PORT="hatch_angle1_size">2</TD><TD>u2le</TD><TD PORT="hatch_angle1_type">hatch_angle1</TD></TR>
+				<TR><TD PORT="hatch_angle2_pos">16</TD><TD PORT="hatch_angle2_size">2</TD><TD>u2le</TD><TD PORT="hatch_angle2_type">hatch_angle2</TD></TR>
+				<TR><TD PORT="fill_on_pos">18</TD><TD PORT="fill_on_size">1</TD><TD>u1</TD><TD PORT="fill_on_type">fill_on</TD></TR>
+				<TR><TD PORT="border_on_pos">19</TD><TD PORT="border_on_size">1</TD><TD>u1</TD><TD PORT="border_on_type">border_on</TD></TR>
+				<TR><TD PORT="struct_mode_pos">20</TD><TD PORT="struct_mode_size">1</TD><TD>u1→EAreaStructMode</TD><TD PORT="struct_mode_type">struct_mode</TD></TR>
+				<TR><TD PORT="struct_draw_pos">21</TD><TD PORT="struct_draw_size">1</TD><TD>u1→EStructDrawingMode</TD><TD PORT="struct_draw_type">struct_draw</TD></TR>
+				<TR><TD PORT="struct_width_pos">22</TD><TD PORT="struct_width_size">2</TD><TD>u2le</TD><TD PORT="struct_width_type">struct_width</TD></TR>
+				<TR><TD PORT="struct_height_pos">24</TD><TD PORT="struct_height_size">2</TD><TD>u2le</TD><TD PORT="struct_height_type">struct_height</TD></TR>
+				<TR><TD PORT="struct_angle_pos">26</TD><TD PORT="struct_angle_size">2</TD><TD>u2le</TD><TD PORT="struct_angle_type">struct_angle</TD></TR>
+				<TR><TD PORT="struct_irregular_var_x_pos">28</TD><TD PORT="struct_irregular_var_x_size">1</TD><TD>u1</TD><TD PORT="struct_irregular_var_x_type">struct_irregular_var_x</TD></TR>
+				<TR><TD PORT="struct_irregular_var_y_pos">29</TD><TD PORT="struct_irregular_var_y_size">1</TD><TD>u1</TD><TD PORT="struct_irregular_var_y_type">struct_irregular_var_y</TD></TR>
+				<TR><TD PORT="struct_irregular_min_dist_pos">30</TD><TD PORT="struct_irregular_min_dist_size">2</TD><TD>u2le</TD><TD PORT="struct_irregular_min_dist_type">struct_irregular_min_dist</TD></TR>
+				<TR><TD PORT="reserved1_pos">32</TD><TD PORT="reserved1_size">2</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="data_size_pos">34</TD><TD PORT="data_size_size">2</TD><TD>u2le</TD><TD PORT="data_size_type">data_size</TD></TR>
+				<TR><TD PORT="elements_pos">36</TD><TD PORT="elements_size">(data_size * 8)</TD><TD>TSymElements</TD><TD PORT="elements_type">elements</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_d_poly {
+			label="Ocd2018::TDPoly";
+			graph[style=dotted];
+
+			t_d_poly__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="x_value_pos">0</TD><TD PORT="x_value_size">4</TD><TD>s4le</TD><TD PORT="x_value_type">x_value</TD></TR>
+				<TR><TD PORT="y_value_pos">4</TD><TD PORT="y_value_size">4</TD><TD>s4le</TD><TD PORT="y_value_type">y_value</TD></TR>
+			</TABLE>>];
+			t_d_poly__inst__flags [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">id</TD><TD BGCOLOR="#E0FFE0">value</TD></TR>
+				<TR><TD>flags</TD><TD>((x_value &amp; 15) | (y_value &amp; (15 &lt;&lt; 4)))</TD></TR>
+			</TABLE>>];
+			t_d_poly__inst__x_coord [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">id</TD><TD BGCOLOR="#E0FFE0">value</TD></TR>
+				<TR><TD>x_coord</TD><TD>(x_value / 256)</TD></TR>
+			</TABLE>>];
+			t_d_poly__inst__y_coord [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">id</TD><TD BGCOLOR="#E0FFE0">value</TD></TR>
+				<TR><TD>y_coord</TD><TD>(y_value / 256)</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__pascal_string {
+			label="Ocd2018::PascalString";
+			graph[style=dotted];
+
+			pascal_string__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="len_pos">0</TD><TD PORT="len_size">1</TD><TD>u1</TD><TD PORT="len_type">len</TD></TR>
+				<TR><TD PORT="data_pos">1</TD><TD PORT="data_size">len</TD><TD>str(ISO8859-1)</TD><TD PORT="data_type">data</TD></TR>
+			</TABLE>>];
+			pascal_string__inst__value [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">id</TD><TD BGCOLOR="#E0FFE0">value</TD></TR>
+				<TR><TD>value</TD><TD>data</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_symbol_pos {
+			label="Ocd2018::TSymbolPos";
+			graph[style=dotted];
+
+			t_symbol_pos__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="pos_pos">0</TD><TD PORT="pos_size">4</TD><TD>u4le</TD><TD PORT="pos_type">pos</TD></TR>
+			</TABLE>>];
+			t_symbol_pos__inst__symbol [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="symbol_pos">pos</TD><TD PORT="symbol_size">...</TD><TD>TSymbol</TD><TD PORT="symbol_type">symbol</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_line_symbol {
+			label="Ocd2018::TLineSymbol";
+			graph[style=dotted];
+
+			t_line_symbol__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="line_color_pos">0</TD><TD PORT="line_color_size">2</TD><TD>u2le</TD><TD PORT="line_color_type">line_color</TD></TR>
+				<TR><TD PORT="line_width_pos">2</TD><TD PORT="line_width_size">2</TD><TD>u2le</TD><TD PORT="line_width_type">line_width</TD></TR>
+				<TR><TD PORT="line_style_pos">4</TD><TD PORT="line_style_size">2</TD><TD>u2le</TD><TD PORT="line_style_type">line_style</TD></TR>
+				<TR><TD PORT="dist_from_start_pos">6</TD><TD PORT="dist_from_start_size">2</TD><TD>u2le</TD><TD PORT="dist_from_start_type">dist_from_start</TD></TR>
+				<TR><TD PORT="dist_to_end_pos">8</TD><TD PORT="dist_to_end_size">2</TD><TD>u2le</TD><TD PORT="dist_to_end_type">dist_to_end</TD></TR>
+				<TR><TD PORT="main_length_pos">10</TD><TD PORT="main_length_size">2</TD><TD>u2le</TD><TD PORT="main_length_type">main_length</TD></TR>
+				<TR><TD PORT="end_length_pos">12</TD><TD PORT="end_length_size">2</TD><TD>u2le</TD><TD PORT="end_length_type">end_length</TD></TR>
+				<TR><TD PORT="main_gap_pos">14</TD><TD PORT="main_gap_size">2</TD><TD>u2le</TD><TD PORT="main_gap_type">main_gap</TD></TR>
+				<TR><TD PORT="sec_gap_pos">16</TD><TD PORT="sec_gap_size">2</TD><TD>u2le</TD><TD PORT="sec_gap_type">sec_gap</TD></TR>
+				<TR><TD PORT="end_gap_pos">18</TD><TD PORT="end_gap_size">2</TD><TD>u2le</TD><TD PORT="end_gap_type">end_gap</TD></TR>
+				<TR><TD PORT="min_sym_pos">20</TD><TD PORT="min_sym_size">2</TD><TD>u2le</TD><TD PORT="min_sym_type">min_sym</TD></TR>
+				<TR><TD PORT="n_prim_sym_pos">22</TD><TD PORT="n_prim_sym_size">2</TD><TD>u2le</TD><TD PORT="n_prim_sym_type">n_prim_sym</TD></TR>
+				<TR><TD PORT="prim_sym_dist_pos">24</TD><TD PORT="prim_sym_dist_size">2</TD><TD>u2le</TD><TD PORT="prim_sym_dist_type">prim_sym_dist</TD></TR>
+				<TR><TD PORT="dbl_mode_pos">26</TD><TD PORT="dbl_mode_size">2</TD><TD>u2le</TD><TD PORT="dbl_mode_type">dbl_mode</TD></TR>
+				<TR><TD PORT="dbl_flags_pos">28</TD><TD PORT="dbl_flags_size">2</TD><TD>u2le</TD><TD PORT="dbl_flags_type">dbl_flags</TD></TR>
+				<TR><TD PORT="dbl_fill_color_pos">30</TD><TD PORT="dbl_fill_color_size">2</TD><TD>u2le</TD><TD PORT="dbl_fill_color_type">dbl_fill_color</TD></TR>
+				<TR><TD PORT="dbl_left_color_pos">32</TD><TD PORT="dbl_left_color_size">2</TD><TD>u2le</TD><TD PORT="dbl_left_color_type">dbl_left_color</TD></TR>
+				<TR><TD PORT="dbl_right_color_pos">34</TD><TD PORT="dbl_right_color_size">2</TD><TD>u2le</TD><TD PORT="dbl_right_color_type">dbl_right_color</TD></TR>
+				<TR><TD PORT="dbl_width_pos">36</TD><TD PORT="dbl_width_size">2</TD><TD>u2le</TD><TD PORT="dbl_width_type">dbl_width</TD></TR>
+				<TR><TD PORT="dbl_left_width_pos">38</TD><TD PORT="dbl_left_width_size">2</TD><TD>u2le</TD><TD PORT="dbl_left_width_type">dbl_left_width</TD></TR>
+				<TR><TD PORT="dbl_right_width_pos">40</TD><TD PORT="dbl_right_width_size">2</TD><TD>u2le</TD><TD PORT="dbl_right_width_type">dbl_right_width</TD></TR>
+				<TR><TD PORT="dbl_length_pos">42</TD><TD PORT="dbl_length_size">2</TD><TD>u2le</TD><TD PORT="dbl_length_type">dbl_length</TD></TR>
+				<TR><TD PORT="dbl_gap_pos">44</TD><TD PORT="dbl_gap_size">2</TD><TD>u2le</TD><TD PORT="dbl_gap_type">dbl_gap</TD></TR>
+				<TR><TD PORT="reserved1_pos">46</TD><TD PORT="reserved1_size">6</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="dec_mode_pos">52</TD><TD PORT="dec_mode_size">2</TD><TD>u2le</TD><TD PORT="dec_mode_type">dec_mode</TD></TR>
+				<TR><TD PORT="dec_symbol_size_pos">54</TD><TD PORT="dec_symbol_size_size">2</TD><TD>u2le</TD><TD PORT="dec_symbol_size_type">dec_symbol_size</TD></TR>
+				<TR><TD PORT="dec_symbol_distance_pos">56</TD><TD PORT="dec_symbol_distance_size">1</TD><TD>u1</TD><TD PORT="dec_symbol_distance_type">dec_symbol_distance</TD></TR>
+				<TR><TD PORT="dec_symbol_width_pos">57</TD><TD PORT="dec_symbol_width_size">1</TD><TD>u1</TD><TD PORT="dec_symbol_width_type">dec_symbol_width</TD></TR>
+				<TR><TD PORT="fr_color_pos">58</TD><TD PORT="fr_color_size">2</TD><TD>u2le</TD><TD PORT="fr_color_type">fr_color</TD></TR>
+				<TR><TD PORT="fr_width_pos">60</TD><TD PORT="fr_width_size">2</TD><TD>u2le</TD><TD PORT="fr_width_type">fr_width</TD></TR>
+				<TR><TD PORT="fr_style_pos">62</TD><TD PORT="fr_style_size">2</TD><TD>u2le</TD><TD PORT="fr_style_type">fr_style</TD></TR>
+				<TR><TD PORT="prim_dsize_pos">64</TD><TD PORT="prim_dsize_size">2</TD><TD>u2le</TD><TD PORT="prim_dsize_type">prim_dsize</TD></TR>
+				<TR><TD PORT="sec_dsize_pos">66</TD><TD PORT="sec_dsize_size">2</TD><TD>u2le</TD><TD PORT="sec_dsize_type">sec_dsize</TD></TR>
+				<TR><TD PORT="corner_dsize_pos">68</TD><TD PORT="corner_dsize_size">2</TD><TD>u2le</TD><TD PORT="corner_dsize_type">corner_dsize</TD></TR>
+				<TR><TD PORT="start_dsize_pos">70</TD><TD PORT="start_dsize_size">2</TD><TD>u2le</TD><TD PORT="start_dsize_type">start_dsize</TD></TR>
+				<TR><TD PORT="end_dsize_pos">72</TD><TD PORT="end_dsize_size">2</TD><TD>u2le</TD><TD PORT="end_dsize_type">end_dsize</TD></TR>
+				<TR><TD PORT="use_symbol_flags_pos">74</TD><TD PORT="use_symbol_flags_size">1</TD><TD>u1</TD><TD PORT="use_symbol_flags_type">use_symbol_flags</TD></TR>
+				<TR><TD PORT="reserved_pos">75</TD><TD PORT="reserved_size">1</TD><TD>u1</TD><TD PORT="reserved_type">reserved</TD></TR>
+				<TR><TD PORT="prim_elements_pos">76</TD><TD PORT="prim_elements_size">(prim_dsize * 8)</TD><TD>TSymElements</TD><TD PORT="prim_elements_type">prim_elements</TD></TR>
+				<TR><TD PORT="sec_elements_pos">...</TD><TD PORT="sec_elements_size">(sec_dsize * 8)</TD><TD>TSymElements</TD><TD PORT="sec_elements_type">sec_elements</TD></TR>
+				<TR><TD PORT="corner_elements_pos">...</TD><TD PORT="corner_elements_size">(corner_dsize * 8)</TD><TD>TSymElements</TD><TD PORT="corner_elements_type">corner_elements</TD></TR>
+				<TR><TD PORT="start_elements_pos">...</TD><TD PORT="start_elements_size">(start_dsize * 8)</TD><TD>TSymElements</TD><TD PORT="start_elements_type">start_elements</TD></TR>
+				<TR><TD PORT="end_elements_pos">...</TD><TD PORT="end_elements_size">(end_dsize * 8)</TD><TD>TSymElements</TD><TD PORT="end_elements_type">end_elements</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_sym_element_poly {
+			label="Ocd2018::TSymElementPoly";
+			graph[style=dotted];
+
+			t_sym_element_poly__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="entries_pos">0</TD><TD PORT="entries_size">8</TD><TD>TDPoly</TD><TD PORT="entries_type">entries</TD></TR>
+				<TR><TD COLSPAN="4" PORT="entries__repeat">repeat to end of stream</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_sym_elements {
+			label="Ocd2018::TSymElements";
+			graph[style=dotted];
+
+			t_sym_elements__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="entries_pos">0</TD><TD PORT="entries_size">...</TD><TD>TSymElt</TD><TD PORT="entries_type">entries</TD></TR>
+				<TR><TD COLSPAN="4" PORT="entries__repeat">repeat to end of stream</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_string_index_block {
+			label="Ocd2018::TStringIndexBlock";
+			graph[style=dotted];
+
+			t_string_index_block__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="next_index_block_pos">0</TD><TD PORT="next_index_block_size">4</TD><TD>u4le</TD><TD PORT="next_index_block_type">next_index_block</TD></TR>
+				<TR><TD PORT="string_table_pos">4</TD><TD PORT="string_table_size">16</TD><TD>TStringIndex</TD><TD PORT="string_table_type">string_table</TD></TR>
+				<TR><TD COLSPAN="4" PORT="string_table__repeat">repeat 256 times</TD></TR>
+			</TABLE>>];
+			t_string_index_block__inst__next [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="next_pos">next_index_block</TD><TD PORT="next_size">4100</TD><TD>TStringIndexBlock</TD><TD PORT="next_type">next</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_symbol_index_block {
+			label="Ocd2018::TSymbolIndexBlock";
+			graph[style=dotted];
+
+			t_symbol_index_block__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="next_index_block_pos">0</TD><TD PORT="next_index_block_size">4</TD><TD>u4le</TD><TD PORT="next_index_block_type">next_index_block</TD></TR>
+				<TR><TD PORT="symbol_position_pos">4</TD><TD PORT="symbol_position_size">4</TD><TD>TSymbolPos</TD><TD PORT="symbol_position_type">symbol_position</TD></TR>
+				<TR><TD COLSPAN="4" PORT="symbol_position__repeat">repeat 256 times</TD></TR>
+			</TABLE>>];
+			t_symbol_index_block__inst__next [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="next_pos">next_index_block</TD><TD PORT="next_size">1028</TD><TD>TSymbolIndexBlock</TD><TD PORT="next_type">next</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__ocd_file_header {
+			label="Ocd2018::OcdFileHeader";
+			graph[style=dotted];
+
+			ocd_file_header__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="magic_pos">0</TD><TD PORT="magic_size">2</TD><TD></TD><TD PORT="magic_type">magic</TD></TR>
+				<TR><TD PORT="file_type_pos">2</TD><TD PORT="file_type_size">1</TD><TD>u1→EFileType</TD><TD PORT="file_type_type">file_type</TD></TR>
+				<TR><TD PORT="file_status_pos">3</TD><TD PORT="file_status_size">1</TD><TD>u1</TD><TD PORT="file_status_type">file_status</TD></TR>
+				<TR><TD PORT="version_pos">4</TD><TD PORT="version_size">2</TD><TD>u2le</TD><TD PORT="version_type">version</TD></TR>
+				<TR><TD PORT="sub_version_pos">6</TD><TD PORT="sub_version_size">1</TD><TD>u1</TD><TD PORT="sub_version_type">sub_version</TD></TR>
+				<TR><TD PORT="sub_sub_version_pos">7</TD><TD PORT="sub_sub_version_size">1</TD><TD>u1</TD><TD PORT="sub_sub_version_type">sub_sub_version</TD></TR>
+				<TR><TD PORT="first_symbol_index_block_pos">8</TD><TD PORT="first_symbol_index_block_size">4</TD><TD>u4le</TD><TD PORT="first_symbol_index_block_type">first_symbol_index_block</TD></TR>
+				<TR><TD PORT="first_object_index_block_pos">12</TD><TD PORT="first_object_index_block_size">4</TD><TD>u4le</TD><TD PORT="first_object_index_block_type">first_object_index_block</TD></TR>
+				<TR><TD PORT="offline_sync_serial_pos">16</TD><TD PORT="offline_sync_serial_size">4</TD><TD>u4le</TD><TD PORT="offline_sync_serial_type">offline_sync_serial</TD></TR>
+				<TR><TD PORT="current_file_version_pos">20</TD><TD PORT="current_file_version_size">4</TD><TD>u4le</TD><TD PORT="current_file_version_type">current_file_version</TD></TR>
+				<TR><TD PORT="reserved1_pos">24</TD><TD PORT="reserved1_size">8</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="first_string_index_block_pos">32</TD><TD PORT="first_string_index_block_size">4</TD><TD>u4le</TD><TD PORT="first_string_index_block_type">first_string_index_block</TD></TR>
+				<TR><TD PORT="file_name_pos_pos">36</TD><TD PORT="file_name_pos_size">4</TD><TD>u4le</TD><TD PORT="file_name_pos_type">file_name_pos</TD></TR>
+				<TR><TD PORT="file_name_size_pos">40</TD><TD PORT="file_name_size_size">4</TD><TD>u4le</TD><TD PORT="file_name_size_type">file_name_size</TD></TR>
+				<TR><TD PORT="reserved2_pos">44</TD><TD PORT="reserved2_size">12</TD><TD></TD><TD PORT="reserved2_type">reserved2</TD></TR>
+				<TR><TD PORT="first_mr_index_block_pos">56</TD><TD PORT="first_mr_index_block_size">4</TD><TD>u4le</TD><TD PORT="first_mr_index_block_type">first_mr_index_block</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_object_index_block {
+			label="Ocd2018::TObjectIndexBlock";
+			graph[style=dotted];
+
+			t_object_index_block__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="next_index_block_pos">0</TD><TD PORT="next_index_block_size">4</TD><TD>u4le</TD><TD PORT="next_index_block_type">next_index_block</TD></TR>
+				<TR><TD PORT="object_table_pos">4</TD><TD PORT="object_table_size">40</TD><TD>TObjectIndex</TD><TD PORT="object_table_type">object_table</TD></TR>
+				<TR><TD COLSPAN="4" PORT="object_table__repeat">repeat 256 times</TD></TR>
+			</TABLE>>];
+			t_object_index_block__inst__next [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="next_pos">next_index_block</TD><TD PORT="next_size">10244</TD><TD>TObjectIndexBlock</TD><TD PORT="next_type">next</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_object_index {
+			label="Ocd2018::TObjectIndex";
+			graph[style=dotted];
+
+			t_object_index__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="rc_pos">0</TD><TD PORT="rc_size">8</TD><TD>TDPoly</TD><TD PORT="rc_type">rc</TD></TR>
+				<TR><TD COLSPAN="4" PORT="rc__repeat">repeat 2 times</TD></TR>
+				<TR><TD PORT="pos_pos">16</TD><TD PORT="pos_size">4</TD><TD>u4le</TD><TD PORT="pos_type">pos</TD></TR>
+				<TR><TD PORT="len_pos">20</TD><TD PORT="len_size">4</TD><TD>u4le</TD><TD PORT="len_type">len</TD></TR>
+				<TR><TD PORT="sym_pos">24</TD><TD PORT="sym_size">4</TD><TD>s4le</TD><TD PORT="sym_type">sym</TD></TR>
+				<TR><TD PORT="obj_type_pos">28</TD><TD PORT="obj_type_size">1</TD><TD>u1→EObjEtSymTypes</TD><TD PORT="obj_type_type">obj_type</TD></TR>
+				<TR><TD PORT="encrypted_mode_pos">29</TD><TD PORT="encrypted_mode_size">1</TD><TD>u1</TD><TD PORT="encrypted_mode_type">encrypted_mode</TD></TR>
+				<TR><TD PORT="status_pos">30</TD><TD PORT="status_size">1</TD><TD>u1→EObjectStatus</TD><TD PORT="status_type">status</TD></TR>
+				<TR><TD PORT="view_type_pos">31</TD><TD PORT="view_type_size">1</TD><TD>u1→EObjectViewMode</TD><TD PORT="view_type_type">view_type</TD></TR>
+				<TR><TD PORT="color_pos">32</TD><TD PORT="color_size">2</TD><TD>s2le</TD><TD PORT="color_type">color</TD></TR>
+				<TR><TD PORT="group_pos">34</TD><TD PORT="group_size">2</TD><TD>s2le</TD><TD PORT="group_type">group</TD></TR>
+				<TR><TD PORT="imp_layer_pos">36</TD><TD PORT="imp_layer_size">2</TD><TD>s2le</TD><TD PORT="imp_layer_type">imp_layer</TD></TR>
+				<TR><TD PORT="reserved1_pos">38</TD><TD PORT="reserved1_size">2</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+			</TABLE>>];
+			t_object_index__inst__object [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="object_pos">pos</TD><TD PORT="object_size">len</TD><TD>TElement</TD><TD PORT="object_type">object</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_symbol {
+			label="Ocd2018::TSymbol";
+			graph[style=dotted];
+
+			t_symbol__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="base_pos">0</TD><TD PORT="base_size">796</TD><TD>TSymbolBase</TD><TD PORT="base_type">base</TD></TR>
+				<TR><TD PORT="type_specific_pos">796</TD><TD PORT="type_specific_size">...</TD><TD>switch (base.otp)</TD><TD PORT="type_specific_type">type_specific</TD></TR>
+			</TABLE>>];
+t_symbol__seq_type_specific_switch [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+	<TR><TD BGCOLOR="#F0F2E4">case</TD><TD BGCOLOR="#F0F2E4">type</TD></TR>
+	<TR><TD>:e_obj_et_sym_types_text</TD><TD PORT="case0">TTextSymbol</TD></TR>
+	<TR><TD>:e_obj_et_sym_types_line_text</TD><TD PORT="case1">TLineTextSymbol</TD></TR>
+	<TR><TD>:e_obj_et_sym_types_rectangle</TD><TD PORT="case2">TRectangleSymbol</TD></TR>
+	<TR><TD>:e_obj_et_sym_types_line</TD><TD PORT="case3">TLineSymbol</TD></TR>
+	<TR><TD>:e_obj_et_sym_types_area</TD><TD PORT="case4">TAreaSymbol</TD></TR>
+	<TR><TD>:e_obj_et_sym_types_point</TD><TD PORT="case5">TPointSymbol</TD></TR>
+</TABLE>>];
+		}
+		subgraph cluster__t_element {
+			label="Ocd2018::TElement";
+			graph[style=dotted];
+
+			t_element__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="sym_pos">0</TD><TD PORT="sym_size">4</TD><TD>s4le</TD><TD PORT="sym_type">sym</TD></TR>
+				<TR><TD PORT="otp_pos">4</TD><TD PORT="otp_size">1</TD><TD>u1→EObjEtSymTypes</TD><TD PORT="otp_type">otp</TD></TR>
+				<TR><TD PORT="reserved1_pos">5</TD><TD PORT="reserved1_size">1</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="ang_pos">6</TD><TD PORT="ang_size">2</TD><TD>s2le</TD><TD PORT="ang_type">ang</TD></TR>
+				<TR><TD PORT="color_pos">8</TD><TD PORT="color_size">4</TD><TD>u4le</TD><TD PORT="color_type">color</TD></TR>
+				<TR><TD PORT="line_width_pos">12</TD><TD PORT="line_width_size">2</TD><TD>s2le</TD><TD PORT="line_width_type">line_width</TD></TR>
+				<TR><TD PORT="diam_flags_pos">14</TD><TD PORT="diam_flags_size">2</TD><TD>s2le</TD><TD PORT="diam_flags_type">diam_flags</TD></TR>
+				<TR><TD PORT="server_object_id_pos">16</TD><TD PORT="server_object_id_size">4</TD><TD>u4le</TD><TD PORT="server_object_id_type">server_object_id</TD></TR>
+				<TR><TD PORT="height_pos">20</TD><TD PORT="height_size">4</TD><TD>u4le</TD><TD PORT="height_type">height</TD></TR>
+				<TR><TD PORT="creation_date_pos">24</TD><TD PORT="creation_date_size">8</TD><TD>f8le</TD><TD PORT="creation_date_type">creation_date</TD></TR>
+				<TR><TD PORT="multirepresentation_id_pos">32</TD><TD PORT="multirepresentation_id_size">4</TD><TD>u4le</TD><TD PORT="multirepresentation_id_type">multirepresentation_id</TD></TR>
+				<TR><TD PORT="modification_date_pos">36</TD><TD PORT="modification_date_size">8</TD><TD>f8le</TD><TD PORT="modification_date_type">modification_date</TD></TR>
+				<TR><TD PORT="n_item_pos">44</TD><TD PORT="n_item_size">4</TD><TD>u4le</TD><TD PORT="n_item_type">n_item</TD></TR>
+				<TR><TD PORT="n_text_pos">48</TD><TD PORT="n_text_size">2</TD><TD>u2le</TD><TD PORT="n_text_type">n_text</TD></TR>
+				<TR><TD PORT="n_object_string_pos">50</TD><TD PORT="n_object_string_size">2</TD><TD>u2le</TD><TD PORT="n_object_string_type">n_object_string</TD></TR>
+				<TR><TD PORT="n_database_string_pos">52</TD><TD PORT="n_database_string_size">2</TD><TD>u2le</TD><TD PORT="n_database_string_type">n_database_string</TD></TR>
+				<TR><TD PORT="object_string_type_pos">54</TD><TD PORT="object_string_type_size">1</TD><TD>u1→EObjectStringType</TD><TD PORT="object_string_type_type">object_string_type</TD></TR>
+				<TR><TD PORT="reserved2_pos">55</TD><TD PORT="reserved2_size">1</TD><TD></TD><TD PORT="reserved2_type">reserved2</TD></TR>
+				<TR><TD PORT="poly_pos">56</TD><TD PORT="poly_size">8</TD><TD>TDPoly</TD><TD PORT="poly_type">poly</TD></TR>
+				<TR><TD COLSPAN="4" PORT="poly__repeat">repeat n_item times</TD></TR>
+				<TR><TD PORT="center_pos">...</TD><TD PORT="center_size">8</TD><TD>TDPoly</TD><TD PORT="center_type">center</TD></TR>
+				<TR><TD PORT="cut_angles_pos">...</TD><TD PORT="cut_angles_size">8</TD><TD>PointSymbolCutAngle</TD><TD PORT="cut_angles_type">cut_angles</TD></TR>
+				<TR><TD COLSPAN="4" PORT="cut_angles__repeat">repeat (n_item - 1) times</TD></TR>
+				<TR><TD PORT="text_pos">...</TD><TD PORT="text_size">(n_text * 8)</TD><TD>str(UTF-16LE)</TD><TD PORT="text_type">text</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__point_symbol_cut_angle {
+			label="Ocd2018::PointSymbolCutAngle";
+			graph[style=dotted];
+
+			point_symbol_cut_angle__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="start_deg_pos">0</TD><TD PORT="start_deg_size">4</TD><TD>s4le</TD><TD PORT="start_deg_type">start_deg</TD></TR>
+				<TR><TD PORT="end_deg_pos">4</TD><TD PORT="end_deg_size">4</TD><TD>s4le</TD><TD PORT="end_deg_type">end_deg</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_rectangle_symbol {
+			label="Ocd2018::TRectangleSymbol";
+			graph[style=dotted];
+
+			t_rectangle_symbol__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="line_color_pos">0</TD><TD PORT="line_color_size">2</TD><TD>u2le</TD><TD PORT="line_color_type">line_color</TD></TR>
+				<TR><TD PORT="line_width_pos">2</TD><TD PORT="line_width_size">2</TD><TD>u2le</TD><TD PORT="line_width_type">line_width</TD></TR>
+				<TR><TD PORT="radius_pos">4</TD><TD PORT="radius_size">2</TD><TD>u2le</TD><TD PORT="radius_type">radius</TD></TR>
+				<TR><TD PORT="grid_flags_pos">6</TD><TD PORT="grid_flags_size">2</TD><TD>u2le</TD><TD PORT="grid_flags_type">grid_flags</TD></TR>
+				<TR><TD PORT="cell_width_pos">8</TD><TD PORT="cell_width_size">2</TD><TD>u2le</TD><TD PORT="cell_width_type">cell_width</TD></TR>
+				<TR><TD PORT="cell_height_pos">10</TD><TD PORT="cell_height_size">2</TD><TD>u2le</TD><TD PORT="cell_height_type">cell_height</TD></TR>
+				<TR><TD PORT="reserved1_pos">12</TD><TD PORT="reserved1_size">4</TD><TD></TD><TD PORT="reserved1_type">reserved1</TD></TR>
+				<TR><TD PORT="unnum_cells_pos">16</TD><TD PORT="unnum_cells_size">2</TD><TD>u2le</TD><TD PORT="unnum_cells_type">unnum_cells</TD></TR>
+				<TR><TD PORT="unnum_text_pos">18</TD><TD PORT="unnum_text_size">4</TD><TD>PascalString</TD><TD PORT="unnum_text_type">unnum_text</TD></TR>
+				<TR><TD PORT="line_style_pos">22</TD><TD PORT="line_style_size">2</TD><TD>u2le</TD><TD PORT="line_style_type">line_style</TD></TR>
+				<TR><TD PORT="reserved2_pos">24</TD><TD PORT="reserved2_size">34</TD><TD></TD><TD PORT="reserved2_type">reserved2</TD></TR>
+				<TR><TD PORT="font_size_pos">58</TD><TD PORT="font_size_size">2</TD><TD>u2le</TD><TD PORT="font_size_type">font_size</TD></TR>
+				<TR><TD PORT="reserved3_pos">60</TD><TD PORT="reserved3_size">8</TD><TD></TD><TD PORT="reserved3_type">reserved3</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_string_index {
+			label="Ocd2018::TStringIndex";
+			graph[style=dotted];
+
+			t_string_index__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="pos_pos">0</TD><TD PORT="pos_size">4</TD><TD>u4le</TD><TD PORT="pos_type">pos</TD></TR>
+				<TR><TD PORT="len_pos">4</TD><TD PORT="len_size">4</TD><TD>u4le</TD><TD PORT="len_type">len</TD></TR>
+				<TR><TD PORT="rec_type_pos">8</TD><TD PORT="rec_type_size">4</TD><TD>u4le</TD><TD PORT="rec_type_type">rec_type</TD></TR>
+				<TR><TD PORT="obj_index_pos">12</TD><TD PORT="obj_index_size">4</TD><TD>u4le</TD><TD PORT="obj_index_type">obj_index</TD></TR>
+			</TABLE>>];
+			t_string_index__inst__parameter_string [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="parameter_string_pos">pos</TD><TD PORT="parameter_string_size">len</TD><TD>str(ISO8859-1)</TD><TD PORT="parameter_string_type">parameter_string</TD></TR>
+			</TABLE>>];
+		}
+		subgraph cluster__t_point_symbol {
+			label="Ocd2018::TPointSymbol";
+			graph[style=dotted];
+
+			t_point_symbol__seq [label=<<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+				<TR><TD BGCOLOR="#E0FFE0">pos</TD><TD BGCOLOR="#E0FFE0">size</TD><TD BGCOLOR="#E0FFE0">type</TD><TD BGCOLOR="#E0FFE0">id</TD></TR>
+				<TR><TD PORT="data_size_pos">0</TD><TD PORT="data_size_size">2</TD><TD>u2le</TD><TD PORT="data_size_type">data_size</TD></TR>
+				<TR><TD PORT="reserved_pos">2</TD><TD PORT="reserved_size">2</TD><TD>u2le</TD><TD PORT="reserved_type">reserved</TD></TR>
+				<TR><TD PORT="elements_pos">4</TD><TD PORT="elements_size">(data_size * 8)</TD><TD>TSymElements</TD><TD PORT="elements_type">elements</TD></TR>
+			</TABLE>>];
+		}
+	}
+	ocd2018__seq:file_header_type -> ocd_file_header__seq [style=bold];
+	ocd_file_header__seq:file_name_pos_type -> ocd2018__inst__file_name:file_name_pos [color="#404040"];
+	ocd_file_header__seq:file_name_size_type -> ocd2018__inst__file_name:file_name_size [color="#404040"];
+	ocd_file_header__seq:first_symbol_index_block_type -> ocd2018__inst__symbol_index:symbol_index_pos [color="#404040"];
+	ocd2018__inst__symbol_index:symbol_index_type -> t_symbol_index_block__seq [style=bold];
+	ocd_file_header__seq:first_string_index_block_type -> ocd2018__inst__string_index:string_index_pos [color="#404040"];
+	ocd2018__inst__string_index:string_index_type -> t_string_index_block__seq [style=bold];
+	ocd_file_header__seq:first_object_index_block_type -> ocd2018__inst__object_index:object_index_pos [color="#404040"];
+	ocd2018__inst__object_index:object_index_type -> t_object_index_block__seq [style=bold];
+	t_text_symbol__seq:font_name_type -> pascal_string__seq [style=bold];
+	t_sym_elt__seq:st_n_poly_type -> t_sym_elt__seq:st_poly_size [color="#404040"];
+	t_sym_elt__seq:st_poly_type -> t_sym_element_poly__seq [style=bold];
+	t_line_text_symbol__seq:font_name_type -> pascal_string__seq [style=bold];
+	t_area_symbol__seq:data_size_type -> t_area_symbol__seq:elements_size [color="#404040"];
+	t_area_symbol__seq:elements_type -> t_sym_elements__seq [style=bold];
+	t_d_poly__seq:x_value_type -> t_d_poly__inst__flags [color="#404040"];
+	t_d_poly__seq:y_value_type -> t_d_poly__inst__flags [color="#404040"];
+	t_d_poly__seq:x_value_type -> t_d_poly__inst__x_coord [color="#404040"];
+	t_d_poly__seq:y_value_type -> t_d_poly__inst__y_coord [color="#404040"];
+	pascal_string__seq:len_type -> pascal_string__seq:data_size [color="#404040"];
+	pascal_string__seq:data_type -> pascal_string__inst__value [color="#404040"];
+	t_symbol_pos__seq:pos_type -> t_symbol_pos__inst__symbol:symbol_pos [color="#404040"];
+	t_symbol_pos__inst__symbol:symbol_type -> t_symbol__seq [style=bold];
+	t_line_symbol__seq:prim_dsize_type -> t_line_symbol__seq:prim_elements_size [color="#404040"];
+	t_line_symbol__seq:prim_elements_type -> t_sym_elements__seq [style=bold];
+	t_line_symbol__seq:sec_dsize_type -> t_line_symbol__seq:sec_elements_size [color="#404040"];
+	t_line_symbol__seq:sec_elements_type -> t_sym_elements__seq [style=bold];
+	t_line_symbol__seq:corner_dsize_type -> t_line_symbol__seq:corner_elements_size [color="#404040"];
+	t_line_symbol__seq:corner_elements_type -> t_sym_elements__seq [style=bold];
+	t_line_symbol__seq:start_dsize_type -> t_line_symbol__seq:start_elements_size [color="#404040"];
+	t_line_symbol__seq:start_elements_type -> t_sym_elements__seq [style=bold];
+	t_line_symbol__seq:end_dsize_type -> t_line_symbol__seq:end_elements_size [color="#404040"];
+	t_line_symbol__seq:end_elements_type -> t_sym_elements__seq [style=bold];
+	t_sym_element_poly__seq:entries_type -> t_d_poly__seq [style=bold];
+	t_sym_elements__seq:entries_type -> t_sym_elt__seq [style=bold];
+	t_string_index_block__seq:string_table_type -> t_string_index__seq [style=bold];
+	t_string_index_block__seq:next_index_block_type -> t_string_index_block__inst__next:next_pos [color="#404040"];
+	t_string_index_block__inst__next:next_type -> t_string_index_block__seq [style=bold];
+	t_symbol_index_block__seq:symbol_position_type -> t_symbol_pos__seq [style=bold];
+	t_symbol_index_block__seq:next_index_block_type -> t_symbol_index_block__inst__next:next_pos [color="#404040"];
+	t_symbol_index_block__inst__next:next_type -> t_symbol_index_block__seq [style=bold];
+	t_object_index_block__seq:object_table_type -> t_object_index__seq [style=bold];
+	t_object_index_block__seq:next_index_block_type -> t_object_index_block__inst__next:next_pos [color="#404040"];
+	t_object_index_block__inst__next:next_type -> t_object_index_block__seq [style=bold];
+	t_object_index__seq:rc_type -> t_d_poly__seq [style=bold];
+	t_object_index__seq:pos_type -> t_object_index__inst__object:object_pos [color="#404040"];
+	t_object_index__seq:len_type -> t_object_index__inst__object:object_size [color="#404040"];
+	t_object_index__inst__object:object_type -> t_element__seq [style=bold];
+	t_symbol__seq:base_type -> t_symbol_base__seq [style=bold];
+	t_symbol__seq:type_specific_type -> t_symbol__seq_type_specific_switch [style=bold];
+	t_symbol__seq_type_specific_switch:case0 -> t_text_symbol__seq [style=bold];
+	t_symbol__seq_type_specific_switch:case1 -> t_line_text_symbol__seq [style=bold];
+	t_symbol__seq_type_specific_switch:case2 -> t_rectangle_symbol__seq [style=bold];
+	t_symbol__seq_type_specific_switch:case3 -> t_line_symbol__seq [style=bold];
+	t_symbol__seq_type_specific_switch:case4 -> t_area_symbol__seq [style=bold];
+	t_symbol__seq_type_specific_switch:case5 -> t_point_symbol__seq [style=bold];
+	t_symbol_base__seq:otp_type -> t_symbol__seq:type_specific_type [color="#404040"];
+	t_element__seq:poly_type -> t_d_poly__seq [style=bold];
+	t_element__seq:n_item_type -> t_element__seq:poly__repeat [color="#404040"];
+	t_element__seq:center_type -> t_d_poly__seq [style=bold];
+	t_element__seq:cut_angles_type -> point_symbol_cut_angle__seq [style=bold];
+	t_element__seq:n_item_type -> t_element__seq:cut_angles__repeat [color="#404040"];
+	t_element__seq:n_text_type -> t_element__seq:text_size [color="#404040"];
+	t_rectangle_symbol__seq:unnum_text_type -> pascal_string__seq [style=bold];
+	t_string_index__seq:pos_type -> t_string_index__inst__parameter_string:parameter_string_pos [color="#404040"];
+	t_string_index__seq:len_type -> t_string_index__inst__parameter_string:parameter_string_size [color="#404040"];
+	t_point_symbol__seq:data_size_type -> t_point_symbol__seq:elements_size [color="#404040"];
+	t_point_symbol__seq:elements_type -> t_sym_elements__seq [style=bold];
+}
+
