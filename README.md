@@ -5,12 +5,12 @@ Struct](https://github.com/kaitai-io/kaitai_struct) for description of the .ocd
 binary format, which is a common data representation of orienteering
 maps.
 
-`ocad10.ksy` is the YAML format description. `ocd10_dump.py` is the
-actual tool. Other `ocd10*` are generated files, notably the PDF diagram.
-Currently, v10 format is implemented.
+`ocad*.ksy` are the YAML format description. `ocd_dump.py` is the
+actual tool. Other `ocd*` are generated files, notably the PDF diagram.
+Currently, v10 and v 2018 formats are implemented.
 
 ```
-usage: ocd10_dump.py [-h] [--start SECTION_NAME] [--skip SECTION_NAME] [--print-empty] file
+usage: ocd_dump.py [-h] [--start SECTION_NAME] [--skip SECTION_NAME] [--print-empty] file
 
 Dump ocd file contents in text format.
 
