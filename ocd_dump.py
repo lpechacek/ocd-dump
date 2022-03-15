@@ -133,6 +133,9 @@ parser_class = None
 if header_sample.version == 10:
     import ocd10
     parser_class = ocd10.Ocd10
+elif header_sample.version == 12:
+    import ocd12
+    parser_class = ocd12.Ocd12
 elif header_sample.version == 2018:
     import ocd2018
     parser_class = ocd2018.Ocd2018

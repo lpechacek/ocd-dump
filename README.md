@@ -7,7 +7,7 @@ maps.
 
 `ocad*.ksy` are the YAML format description. `ocd_dump.py` is the
 actual tool. Other `ocd*` are generated files, notably the PDF diagram.
-Currently, v10 and v 2018 formats are implemented.
+Currently, v10, v12 and v2018 formats are implemented.
 
 ```
 usage: ocd_dump.py [-h] [--start SECTION_NAME] [--skip SECTION_NAME] [--print-empty] file
