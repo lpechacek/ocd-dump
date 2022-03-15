@@ -12,6 +12,7 @@
 #          https://github.com/lpechacek/ocd-dump
 
 import argparse
+import datetime
 import enum
 import ocd_bootstrap
 import sys
@@ -56,7 +57,10 @@ def dump_struct(struct, name='', indent=''):
 
         member = getattr(struct, member_name)
 
-        if isinstance(member, (int, float)) or isinstance(member, list) and (len(member) == 0 or isinstance(member[0], (int, str))):
+        if isinstance(member, float) and member_name.endswith('_date'):
+            date_time_repr = str(datetime.datetime(year=1899, month=12, day=30) + datetime.timedelta(days=member))
+            print(f'{indent}{full_member_name}: {member} ({date_time_repr})')
+        elif isinstance(member, (int, float)) or isinstance(member, list) and (len(member) == 0 or isinstance(member[0], (int, str))):
             print(f'{indent}{full_member_name}: {member}')
         elif isinstance(member, bytes):
             print (f'{indent}{full_member_name}: bytes [' + ', '.join([f'0x{x:02X}' for x in member]) + ']')
