@@ -1,12 +1,11 @@
 # This is a generated file! Please edit source .ksy file and use kaitai-struct-compiler to rebuild
 
-from pkg_resources import parse_version
 import kaitaistruct
 from kaitaistruct import KaitaiStruct, KaitaiStream, BytesIO
 from enum import Enum
 
 
-if parse_version(kaitaistruct.__version__) < parse_version('0.9'):
+if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 9):
     raise Exception("Incompatible Kaitai Struct Python API: 0.9 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class Ocd2018(KaitaiStruct):
@@ -98,9 +97,9 @@ class Ocd2018(KaitaiStruct):
             self.indent_first = self._io.read_u2le()
             self.indent_other = self._io.read_u2le()
             self.n_tabs = self._io.read_u2le()
-            self.tabs = [None] * (32)
+            self.tabs = []
             for i in range(32):
-                self.tabs[i] = self._io.read_u4le()
+                self.tabs.append(self._io.read_u4le())
 
             self.lbon = self._io.read_u2le()
             self.lbcolor = self._io.read_u2le()
@@ -146,15 +145,15 @@ class Ocd2018(KaitaiStruct):
             self.file_pos = self._io.read_u4le()
             self.reserved1 = self._io.read_bytes(2)
             self.n_colors = self._io.read_u2le()
-            self.colors = [None] * (14)
+            self.colors = []
             for i in range(14):
-                self.colors[i] = self._io.read_u2le()
+                self.colors.append(self._io.read_u2le())
 
             self.description = (self._io.read_bytes(128)).decode(u"UTF-16LE")
             self.icon_bits = self._io.read_bytes(484)
-            self.symbol_tree_group = [None] * (64)
+            self.symbol_tree_group = []
             for i in range(64):
-                self.symbol_tree_group[i] = self._io.read_u2le()
+                self.symbol_tree_group.append(self._io.read_u2le())
 
 
 
@@ -256,26 +255,26 @@ class Ocd2018(KaitaiStruct):
         @property
         def flags(self):
             if hasattr(self, '_m_flags'):
-                return self._m_flags if hasattr(self, '_m_flags') else None
+                return self._m_flags
 
-            self._m_flags = ((self.x_value & 15) | (self.y_value & (15 << 4)))
-            return self._m_flags if hasattr(self, '_m_flags') else None
+            self._m_flags = ((self.x_value & 15) | ((self.y_value & 15) << 4))
+            return getattr(self, '_m_flags', None)
 
         @property
         def x_coord(self):
             if hasattr(self, '_m_x_coord'):
-                return self._m_x_coord if hasattr(self, '_m_x_coord') else None
+                return self._m_x_coord
 
             self._m_x_coord = self.x_value // 256
-            return self._m_x_coord if hasattr(self, '_m_x_coord') else None
+            return getattr(self, '_m_x_coord', None)
 
         @property
         def y_coord(self):
             if hasattr(self, '_m_y_coord'):
-                return self._m_y_coord if hasattr(self, '_m_y_coord') else None
+                return self._m_y_coord
 
             self._m_y_coord = self.y_value // 256
-            return self._m_y_coord if hasattr(self, '_m_y_coord') else None
+            return getattr(self, '_m_y_coord', None)
 
 
     class PascalString(KaitaiStruct):
@@ -292,10 +291,10 @@ class Ocd2018(KaitaiStruct):
         @property
         def value(self):
             if hasattr(self, '_m_value'):
-                return self._m_value if hasattr(self, '_m_value') else None
+                return self._m_value
 
             self._m_value = self.data
-            return self._m_value if hasattr(self, '_m_value') else None
+            return getattr(self, '_m_value', None)
 
 
     class TSymbolPos(KaitaiStruct):
@@ -311,7 +310,7 @@ class Ocd2018(KaitaiStruct):
         @property
         def symbol(self):
             if hasattr(self, '_m_symbol'):
-                return self._m_symbol if hasattr(self, '_m_symbol') else None
+                return self._m_symbol
 
             if self.pos > 0:
                 io = self._root._io
@@ -320,7 +319,7 @@ class Ocd2018(KaitaiStruct):
                 self._m_symbol = Ocd2018.TSymbol(io, self, self._root)
                 io.seek(_pos)
 
-            return self._m_symbol if hasattr(self, '_m_symbol') else None
+            return getattr(self, '_m_symbol', None)
 
 
     class TLineSymbol(KaitaiStruct):
@@ -437,15 +436,15 @@ class Ocd2018(KaitaiStruct):
 
         def _read(self):
             self.next_index_block = self._io.read_u4le()
-            self.string_table = [None] * (256)
+            self.string_table = []
             for i in range(256):
-                self.string_table[i] = Ocd2018.TStringIndex(self._io, self, self._root)
+                self.string_table.append(Ocd2018.TStringIndex(self._io, self, self._root))
 
 
         @property
         def next(self):
             if hasattr(self, '_m_next'):
-                return self._m_next if hasattr(self, '_m_next') else None
+                return self._m_next
 
             if self.next_index_block != 0:
                 io = self._root._io
@@ -454,7 +453,7 @@ class Ocd2018(KaitaiStruct):
                 self._m_next = Ocd2018.TStringIndexBlock(io, self, self._root)
                 io.seek(_pos)
 
-            return self._m_next if hasattr(self, '_m_next') else None
+            return getattr(self, '_m_next', None)
 
 
     class TSymbolIndexBlock(KaitaiStruct):
@@ -466,15 +465,15 @@ class Ocd2018(KaitaiStruct):
 
         def _read(self):
             self.next_index_block = self._io.read_u4le()
-            self.symbol_position = [None] * (256)
+            self.symbol_position = []
             for i in range(256):
-                self.symbol_position[i] = Ocd2018.TSymbolPos(self._io, self, self._root)
+                self.symbol_position.append(Ocd2018.TSymbolPos(self._io, self, self._root))
 
 
         @property
         def next(self):
             if hasattr(self, '_m_next'):
-                return self._m_next if hasattr(self, '_m_next') else None
+                return self._m_next
 
             if self.next_index_block != 0:
                 io = self._root._io
@@ -483,7 +482,7 @@ class Ocd2018(KaitaiStruct):
                 self._m_next = Ocd2018.TSymbolIndexBlock(io, self, self._root)
                 io.seek(_pos)
 
-            return self._m_next if hasattr(self, '_m_next') else None
+            return getattr(self, '_m_next', None)
 
 
     class OcdFileHeader(KaitaiStruct):
@@ -523,15 +522,15 @@ class Ocd2018(KaitaiStruct):
 
         def _read(self):
             self.next_index_block = self._io.read_u4le()
-            self.object_table = [None] * (256)
+            self.object_table = []
             for i in range(256):
-                self.object_table[i] = Ocd2018.TObjectIndex(self._io, self, self._root)
+                self.object_table.append(Ocd2018.TObjectIndex(self._io, self, self._root))
 
 
         @property
         def next(self):
             if hasattr(self, '_m_next'):
-                return self._m_next if hasattr(self, '_m_next') else None
+                return self._m_next
 
             if self.next_index_block != 0:
                 io = self._root._io
@@ -540,7 +539,7 @@ class Ocd2018(KaitaiStruct):
                 self._m_next = Ocd2018.TObjectIndexBlock(io, self, self._root)
                 io.seek(_pos)
 
-            return self._m_next if hasattr(self, '_m_next') else None
+            return getattr(self, '_m_next', None)
 
 
     class TObjectIndex(KaitaiStruct):
@@ -551,9 +550,9 @@ class Ocd2018(KaitaiStruct):
             self._read()
 
         def _read(self):
-            self.rc = [None] * (2)
+            self.rc = []
             for i in range(2):
-                self.rc[i] = Ocd2018.TDPoly(self._io, self, self._root)
+                self.rc.append(Ocd2018.TDPoly(self._io, self, self._root))
 
             self.pos = self._io.read_u4le()
             self.len = self._io.read_u4le()
@@ -573,7 +572,7 @@ class Ocd2018(KaitaiStruct):
             Verify that there cannot be more TElement structures packed in
             the space reserved by t_object_index.len."""
             if hasattr(self, '_m_object'):
-                return self._m_object if hasattr(self, '_m_object') else None
+                return self._m_object
 
             _pos = self._io.pos()
             self._io.seek(self.pos)
@@ -581,7 +580,7 @@ class Ocd2018(KaitaiStruct):
             _io__raw__m_object = KaitaiStream(BytesIO(self._raw__m_object))
             self._m_object = Ocd2018.TElement(_io__raw__m_object, self, self._root)
             self._io.seek(_pos)
-            return self._m_object if hasattr(self, '_m_object') else None
+            return getattr(self, '_m_object', None)
 
 
     class TSymbol(KaitaiStruct):
@@ -635,18 +634,18 @@ class Ocd2018(KaitaiStruct):
             self.object_string_type = KaitaiStream.resolve_enum(Ocd2018.EObjectStringType, self._io.read_u1())
             self.reserved2 = self._io.read_bytes(1)
             if  ((self.n_item != 0) and (self.otp.value != 1)) :
-                self.poly = [None] * (self.n_item)
+                self.poly = []
                 for i in range(self.n_item):
-                    self.poly[i] = Ocd2018.TDPoly(self._io, self, self._root)
+                    self.poly.append(Ocd2018.TDPoly(self._io, self, self._root))
 
 
             if self.otp.value == 1:
                 self.center = Ocd2018.TDPoly(self._io, self, self._root)
 
             if  ((self.n_item > 1) and (self.otp.value == 1)) :
-                self.cut_angles = [None] * ((self.n_item - 1))
+                self.cut_angles = []
                 for i in range((self.n_item - 1)):
-                    self.cut_angles[i] = Ocd2018.PointSymbolCutAngle(self._io, self, self._root)
+                    self.cut_angles.append(Ocd2018.PointSymbolCutAngle(self._io, self, self._root))
 
 
             if self.n_text != 0:
@@ -708,7 +707,7 @@ class Ocd2018(KaitaiStruct):
         @property
         def parameter_string(self):
             if hasattr(self, '_m_parameter_string'):
-                return self._m_parameter_string if hasattr(self, '_m_parameter_string') else None
+                return self._m_parameter_string
 
             if self.rec_type > 0:
                 _pos = self._io.pos()
@@ -716,7 +715,7 @@ class Ocd2018(KaitaiStruct):
                 self._m_parameter_string = (KaitaiStream.bytes_terminate(self._io.read_bytes(self.len), 0, False)).decode(u"ISO8859-1")
                 self._io.seek(_pos)
 
-            return self._m_parameter_string if hasattr(self, '_m_parameter_string') else None
+            return getattr(self, '_m_parameter_string', None)
 
 
     class TPointSymbol(KaitaiStruct):
@@ -739,46 +738,43 @@ class Ocd2018(KaitaiStruct):
     @property
     def file_name(self):
         if hasattr(self, '_m_file_name'):
-            return self._m_file_name if hasattr(self, '_m_file_name') else None
+            return self._m_file_name
 
         _pos = self._io.pos()
         self._io.seek(self.file_header.file_name_pos)
         self._m_file_name = (self._io.read_bytes(self.file_header.file_name_size)).decode(u"ISO8859-1")
         self._io.seek(_pos)
-        return self._m_file_name if hasattr(self, '_m_file_name') else None
+        return getattr(self, '_m_file_name', None)
 
     @property
     def symbol_index(self):
         if hasattr(self, '_m_symbol_index'):
-            return self._m_symbol_index if hasattr(self, '_m_symbol_index') else None
+            return self._m_symbol_index
 
         _pos = self._io.pos()
         self._io.seek(self.file_header.first_symbol_index_block)
         self._m_symbol_index = Ocd2018.TSymbolIndexBlock(self._io, self, self._root)
         self._io.seek(_pos)
-        return self._m_symbol_index if hasattr(self, '_m_symbol_index') else None
+        return getattr(self, '_m_symbol_index', None)
 
     @property
     def string_index(self):
         if hasattr(self, '_m_string_index'):
-            return self._m_string_index if hasattr(self, '_m_string_index') else None
+            return self._m_string_index
 
         _pos = self._io.pos()
         self._io.seek(self.file_header.first_string_index_block)
         self._m_string_index = Ocd2018.TStringIndexBlock(self._io, self, self._root)
         self._io.seek(_pos)
-        return self._m_string_index if hasattr(self, '_m_string_index') else None
+        return getattr(self, '_m_string_index', None)
 
     @property
     def object_index(self):
         if hasattr(self, '_m_object_index'):
-            return self._m_object_index if hasattr(self, '_m_object_index') else None
+            return self._m_object_index
 
         _pos = self._io.pos()
         self._io.seek(self.file_header.first_object_index_block)
         self._m_object_index = Ocd2018.TObjectIndexBlock(self._io, self, self._root)
         self._io.seek(_pos)
-        return self._m_object_index if hasattr(self, '_m_object_index') else None
-
-
-
+        return getattr(self, '_m_object_index', None)

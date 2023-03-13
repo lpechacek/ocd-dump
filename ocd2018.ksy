@@ -632,7 +632,7 @@ types:
         type: s4
     instances:
       flags:
-        value: (x_value & 0x0F) | (y_value & 0x0F << 4)
+        value: (x_value & 0x0F) | ((y_value & 0x0F) << 4)
       x_coord:
         value: x_value / 256
       y_coord:
