@@ -511,7 +511,7 @@ types:
       - id: len
         type: u4
       - id: sym
-        type: u4
+        type: s4
       - id: obj_type
         type: u1
         enum: e_obj_et_sym_types
@@ -561,7 +561,7 @@ types:
   t_element:
     seq:
       - id: sym
-        type: u4
+        type: s4
       - id: otp
         type: u1
       - id: res0

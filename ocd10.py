@@ -511,7 +511,7 @@ class Ocd10(KaitaiStruct):
 
             self.pos = self._io.read_u4le()
             self.len = self._io.read_u4le()
-            self.sym = self._io.read_u4le()
+            self.sym = self._io.read_s4le()
             self.obj_type = KaitaiStream.resolve_enum(Ocd10.EObjEtSymTypes, self._io.read_u1())
             self.encrypted_mode = self._io.read_u1()
             self.status = self._io.read_u1()
@@ -571,7 +571,7 @@ class Ocd10(KaitaiStruct):
             self._read()
 
         def _read(self):
-            self.sym = self._io.read_u4le()
+            self.sym = self._io.read_s4le()
             self.otp = self._io.read_u1()
             self.res0 = self._io.read_u1()
             self.ang = self._io.read_u2le()
